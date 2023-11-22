@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="首頁"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_logon"
+        android:title="登入"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_help"
+        android:title="軟體說明"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_rec"
+        android:title="推薦單字"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_music"
+        android:title="音樂學習"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_everyday"
+        android:title="每日一字"
+        app:showAsAction="never"/>
+</menu>
