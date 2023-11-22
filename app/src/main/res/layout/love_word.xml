@@ -22,13 +22,13 @@
         app:layout_constraintVertical_bias="0.976" />
 
     <TextView
-        android:id="@+id/titleNote"
+        android:id="@+id/titleLove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="收藏單字"
         android:textColor="#000000"
-        android:textSize="44sp"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,7 @@
         android:gravity="start"
         android:text="讀取中..."
         android:textColor="#000000"
-        android:textSize="36sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

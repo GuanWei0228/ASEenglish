@@ -50,6 +50,9 @@ class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchL
         rec.setTypeface(
             Typeface.createFromAsset(assets,
                 "font/SentyCreamPuff.ttf"))
+        translatedTv.setTypeface(
+            Typeface.createFromAsset(assets,
+                "font/HanyiSentyPastel.ttf"))
 
 
         //binding = ActivityMainBinding.inflate(layoutInflater)

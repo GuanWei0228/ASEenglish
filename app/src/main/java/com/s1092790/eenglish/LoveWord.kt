@@ -19,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.deep_search.*
+import kotlinx.android.synthetic.main.love_word.*
 
 
 class LoveWord : AppCompatActivity() {
@@ -56,7 +57,10 @@ class LoveWord : AppCompatActivity() {
 
         textView.setTypeface(
             Typeface.createFromAsset(assets,
-                "font/HanyiSentyWoodCut.ttf"))
+                "font/HanyiSentyPastel.ttf"))
+        titleLove.setTypeface(
+            Typeface.createFromAsset(assets,
+                "font/HanyiSentyPastel.ttf"))
 
 
 

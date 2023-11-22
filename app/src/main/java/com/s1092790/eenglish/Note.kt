@@ -18,6 +18,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.note_main.*
 
 
 class Note : AppCompatActivity() {
@@ -61,7 +62,10 @@ class Note : AppCompatActivity() {
 
         textView.setTypeface(
             Typeface.createFromAsset(assets,
-                "font/HanyiSentyWoodCut.ttf"))
+                "font/HanyiSentyPastel.ttf"))
+        titleNote.setTypeface(
+            Typeface.createFromAsset(assets,
+                "font/HanyiSentyPastel.ttf"))
 
 
 

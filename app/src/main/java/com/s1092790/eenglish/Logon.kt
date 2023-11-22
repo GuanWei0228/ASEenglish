@@ -170,10 +170,18 @@ class Logon : AppCompatActivity() {
             button_SignIn.visibility = View.GONE
             button_SignOut.visibility = View.VISIBLE
             button_In.visibility = View.VISIBLE
+            dog.visibility = View.GONE
+            mushroom.visibility = View.GONE
+            me.visibility = View.VISIBLE
+            zzz.visibility = View.VISIBLE
         } else {
             button_SignIn.visibility = View.VISIBLE
             button_SignOut.visibility = View.GONE
             button_In.visibility = View.GONE
+            dog.visibility = View.VISIBLE
+            mushroom.visibility = View.VISIBLE
+            me.visibility = View.GONE
+            zzz.visibility = View.GONE
         }
     }
 
