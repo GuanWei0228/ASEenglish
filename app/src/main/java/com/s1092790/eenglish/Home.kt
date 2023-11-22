@@ -216,130 +216,204 @@ class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchL
 
 
             val mean = doc2.getElementsByClass("trans dtrans dtrans-se  break-cj")//抓單字意思
-            val tmean = mean.subList(0,1)
-            //val meanText = tmean.map {it.text().lowercase() }.joinToString("\n")
-            val meanText = tmean.joinToString("\n") { it.text().lowercase() }
 
-            val pos = doc2.getElementsByClass("pos dpos")//抓詞性
-            //val posText = pos.map { it.text().lowercase() }.joinToString("\n")
-            val posText = pos.joinToString("\n") { it.text().lowercase() }
+            if (mean.isNotEmpty()) {
+                val tmean = mean.subList(0,1)
 
-            val request3 = Request.Builder()
-                .url("https://tw.voicetube.com/definition")
-                .build()
-            val response3 = client.newCall(request3).execute()
-            val body3 = response3.peekBody(Long.MAX_VALUE)
-            val html3 = body3.string()
-            val doc3 = Jsoup.parse(html3)
+                val meanText = tmean.joinToString("\n") { it.text().lowercase() }
 
+                val pos = doc2.getElementsByClass("pos dpos")//抓詞性
 
-            val rwords = doc3.getElementsByClass("sc-f549624-0 hEPORM")
-            val rpos = doc3.getElementsByClass("has-text-weight-medium")
-            val rmean = doc3.getElementsByClass("sc-a4ea01be-1 cJbrEa")
-            val r1words = rwords.subList(0,1)
-            val r2words = rwords.subList(1,2)
-            val r3words = rwords.subList(2,3)
-            val r4words = rwords.subList(3,4)
-            val r5words = rwords.subList(4,5)
-            val r6words = rwords.subList(5,6)
-            val r7words = rwords.subList(6,7)
-            val r8words = rwords.subList(7,8)
-            val r9words = rwords.subList(8,9)
-            val r10words = rwords.subList(9,10)
-            val r1pos = rpos.subList(0,1)
-            val r2pos = rpos.subList(1,2)
-            val r3pos = rpos.subList(2,3)
-            val r4pos = rpos.subList(3,4)
-            val r5pos = rpos.subList(4,5)
-            val r6pos = rpos.subList(5,6)
-            val r7pos = rpos.subList(6,7)
-            val r8pos = rpos.subList(7,8)
-            val r9pos = rpos.subList(8,9)
-            val r10pos = rpos.subList(9,10)
-            val r1mean = rmean.subList(0,1)
-            val r2mean = rmean.subList(1,2)
-            val r3mean = rmean.subList(2,3)
-            val r4mean = rmean.subList(3,4)
-            val r5mean = rmean.subList(4,5)
-            val r6mean = rmean.subList(5,6)
-            val r7mean = rmean.subList(6,7)
-            val r8mean = rmean.subList(7,8)
-            val r9mean = rmean.subList(8,9)
-            val r10mean = rmean.subList(9,10)
-            val r1wordsText = r1words.map {it.text() }.joinToString("\n")
-            val r2wordsText = r2words.map {it.text() }.joinToString("\n")
-            val r3wordsText = r3words.map {it.text() }.joinToString("\n")
-            val r4wordsText = r4words.map {it.text() }.joinToString("\n")
-            val r5wordsText = r5words.map {it.text() }.joinToString("\n")
-            val r6wordsText = r6words.map {it.text() }.joinToString("\n")
-            val r7wordsText = r7words.map {it.text() }.joinToString("\n")
-            val r8wordsText = r8words.map {it.text() }.joinToString("\n")
-            val r9wordsText = r9words.map {it.text() }.joinToString("\n")
-            val r10wordsText = r10words.map {it.text() }.joinToString("\n")
-            val r1posText = r1pos.map {it.text() }.joinToString("\n")
-            val r2posText = r2pos.map {it.text() }.joinToString("\n")
-            val r3posText = r3pos.map {it.text() }.joinToString("\n")
-            val r4posText = r4pos.map {it.text() }.joinToString("\n")
-            val r5posText = r5pos.map {it.text() }.joinToString("\n")
-            val r6posText = r6pos.map {it.text() }.joinToString("\n")
-            val r7posText = r7pos.map {it.text() }.joinToString("\n")
-            val r8posText = r8pos.map {it.text() }.joinToString("\n")
-            val r9posText = r9pos.map {it.text() }.joinToString("\n")
-            val r10posText = r10pos.map {it.text() }.joinToString("\n")
-            val r1meanText = r1mean.map {it.text() }.joinToString("\n")
-            val r2meanText = r2mean.map {it.text() }.joinToString("\n")
-            val r3meanText = r3mean.map {it.text() }.joinToString("\n")
-            val r4meanText = r4mean.map {it.text() }.joinToString("\n")
-            val r5meanText = r5mean.map {it.text() }.joinToString("\n")
-            val r6meanText = r6mean.map {it.text() }.joinToString("\n")
-            val r7meanText = r7mean.map {it.text() }.joinToString("\n")
-            val r8meanText = r8mean.map {it.text() }.joinToString("\n")
-            val r9meanText = r9mean.map {it.text() }.joinToString("\n")
-            val r10meanText = r10mean.map {it.text() }.joinToString("\n")
+                val posText = pos.joinToString("\n") { it.text().lowercase() }
+
+                val request3 = Request.Builder()
+                    .url("https://tw.voicetube.com/definition")
+                    .build()
+                val response3 = client.newCall(request3).execute()
+                val body3 = response3.peekBody(Long.MAX_VALUE)
+                val html3 = body3.string()
+                val doc3 = Jsoup.parse(html3)
 
 
+                val rwords = doc3.getElementsByClass("sc-f549624-0 hEPORM")
+                val rpos = doc3.getElementsByClass("has-text-weight-medium")
+                val rmean = doc3.getElementsByClass("sc-a4ea01be-1 cJbrEa")
+                val r1words = rwords.subList(0,1)
+                val r2words = rwords.subList(1,2)
+                val r3words = rwords.subList(2,3)
+                val r4words = rwords.subList(3,4)
+                val r5words = rwords.subList(4,5)
+                val r6words = rwords.subList(5,6)
+                val r7words = rwords.subList(6,7)
+                val r8words = rwords.subList(7,8)
+                val r9words = rwords.subList(8,9)
+                val r10words = rwords.subList(9,10)
+                val r1pos = rpos.subList(0,1)
+                val r2pos = rpos.subList(1,2)
+                val r3pos = rpos.subList(2,3)
+                val r4pos = rpos.subList(3,4)
+                val r5pos = rpos.subList(4,5)
+                val r6pos = rpos.subList(5,6)
+                val r7pos = rpos.subList(6,7)
+                val r8pos = rpos.subList(7,8)
+                val r9pos = rpos.subList(8,9)
+                val r10pos = rpos.subList(9,10)
+                val r1mean = rmean.subList(0,1)
+                val r2mean = rmean.subList(1,2)
+                val r3mean = rmean.subList(2,3)
+                val r4mean = rmean.subList(3,4)
+                val r5mean = rmean.subList(4,5)
+                val r6mean = rmean.subList(5,6)
+                val r7mean = rmean.subList(6,7)
+                val r8mean = rmean.subList(7,8)
+                val r9mean = rmean.subList(8,9)
+                val r10mean = rmean.subList(9,10)
+                val r1wordsText = r1words.map {it.text() }.joinToString("\n")
+                val r2wordsText = r2words.map {it.text() }.joinToString("\n")
+                val r3wordsText = r3words.map {it.text() }.joinToString("\n")
+                val r4wordsText = r4words.map {it.text() }.joinToString("\n")
+                val r5wordsText = r5words.map {it.text() }.joinToString("\n")
+                val r6wordsText = r6words.map {it.text() }.joinToString("\n")
+                val r7wordsText = r7words.map {it.text() }.joinToString("\n")
+                val r8wordsText = r8words.map {it.text() }.joinToString("\n")
+                val r9wordsText = r9words.map {it.text() }.joinToString("\n")
+                val r10wordsText = r10words.map {it.text() }.joinToString("\n")
+                val r1posText = r1pos.map {it.text() }.joinToString("\n")
+                val r2posText = r2pos.map {it.text() }.joinToString("\n")
+                val r3posText = r3pos.map {it.text() }.joinToString("\n")
+                val r4posText = r4pos.map {it.text() }.joinToString("\n")
+                val r5posText = r5pos.map {it.text() }.joinToString("\n")
+                val r6posText = r6pos.map {it.text() }.joinToString("\n")
+                val r7posText = r7pos.map {it.text() }.joinToString("\n")
+                val r8posText = r8pos.map {it.text() }.joinToString("\n")
+                val r9posText = r9pos.map {it.text() }.joinToString("\n")
+                val r10posText = r10pos.map {it.text() }.joinToString("\n")
+                val r1meanText = r1mean.map {it.text() }.joinToString("\n")
+                val r2meanText = r2mean.map {it.text() }.joinToString("\n")
+                val r3meanText = r3mean.map {it.text() }.joinToString("\n")
+                val r4meanText = r4mean.map {it.text() }.joinToString("\n")
+                val r5meanText = r5mean.map {it.text() }.joinToString("\n")
+                val r6meanText = r6mean.map {it.text() }.joinToString("\n")
+                val r7meanText = r7mean.map {it.text() }.joinToString("\n")
+                val r8meanText = r8mean.map {it.text() }.joinToString("\n")
+                val r9meanText = r9mean.map {it.text() }.joinToString("\n")
+                val r10meanText = r10mean.map {it.text() }.joinToString("\n")
 
-            withContext(Dispatchers.Main) {
-                if(wordsText.isEmpty()){
-                    eveword.text = "今天維修中~"
+
+
+                withContext(Dispatchers.Main) {
+                    if(wordsText.isEmpty()){
+                        eveword.text = "今天維修中~"
+                    }
+                    else{
+                        eveword.text = wordsText + "\n" + posText + "\n" +meanText
+                    }
+
+                    word1.text = r1wordsText + "\n" + r1meanText
+                    word2.text = r2wordsText + "\n" + r2meanText
+                    word3.text = r3wordsText + "\n" + r3meanText
+                    word4.text = r4wordsText + "\n" + r4meanText
+                    word5.text = r5wordsText + "\n" + r5meanText
+                    word6.text = r6wordsText + "\n" + r6meanText
+                    word7.text = r7wordsText + "\n" + r7meanText
+                    word8.text = r8wordsText + "\n" + r8meanText
+                    word9.text = r9wordsText + "\n" + r9meanText
+                    word10.text = r10wordsText + "\n" + r10meanText
+
                 }
-                else{
-                    eveword.text = wordsText + "\n" + posText + "\n" +meanText
+            } else {
+                val request3 = Request.Builder()
+                    .url("https://tw.voicetube.com/definition")
+                    .build()
+                val response3 = client.newCall(request3).execute()
+                val body3 = response3.peekBody(Long.MAX_VALUE)
+                val html3 = body3.string()
+                val doc3 = Jsoup.parse(html3)
+
+
+                val rwords = doc3.getElementsByClass("sc-f549624-0 hEPORM")
+                val rpos = doc3.getElementsByClass("has-text-weight-medium")
+                val rmean = doc3.getElementsByClass("sc-a4ea01be-1 cJbrEa")
+                val r1words = rwords.subList(0,1)
+                val r2words = rwords.subList(1,2)
+                val r3words = rwords.subList(2,3)
+                val r4words = rwords.subList(3,4)
+                val r5words = rwords.subList(4,5)
+                val r6words = rwords.subList(5,6)
+                val r7words = rwords.subList(6,7)
+                val r8words = rwords.subList(7,8)
+                val r9words = rwords.subList(8,9)
+                val r10words = rwords.subList(9,10)
+                val r1pos = rpos.subList(0,1)
+                val r2pos = rpos.subList(1,2)
+                val r3pos = rpos.subList(2,3)
+                val r4pos = rpos.subList(3,4)
+                val r5pos = rpos.subList(4,5)
+                val r6pos = rpos.subList(5,6)
+                val r7pos = rpos.subList(6,7)
+                val r8pos = rpos.subList(7,8)
+                val r9pos = rpos.subList(8,9)
+                val r10pos = rpos.subList(9,10)
+                val r1mean = rmean.subList(0,1)
+                val r2mean = rmean.subList(1,2)
+                val r3mean = rmean.subList(2,3)
+                val r4mean = rmean.subList(3,4)
+                val r5mean = rmean.subList(4,5)
+                val r6mean = rmean.subList(5,6)
+                val r7mean = rmean.subList(6,7)
+                val r8mean = rmean.subList(7,8)
+                val r9mean = rmean.subList(8,9)
+                val r10mean = rmean.subList(9,10)
+                val r1wordsText = r1words.map {it.text() }.joinToString("\n")
+                val r2wordsText = r2words.map {it.text() }.joinToString("\n")
+                val r3wordsText = r3words.map {it.text() }.joinToString("\n")
+                val r4wordsText = r4words.map {it.text() }.joinToString("\n")
+                val r5wordsText = r5words.map {it.text() }.joinToString("\n")
+                val r6wordsText = r6words.map {it.text() }.joinToString("\n")
+                val r7wordsText = r7words.map {it.text() }.joinToString("\n")
+                val r8wordsText = r8words.map {it.text() }.joinToString("\n")
+                val r9wordsText = r9words.map {it.text() }.joinToString("\n")
+                val r10wordsText = r10words.map {it.text() }.joinToString("\n")
+                val r1posText = r1pos.map {it.text() }.joinToString("\n")
+                val r2posText = r2pos.map {it.text() }.joinToString("\n")
+                val r3posText = r3pos.map {it.text() }.joinToString("\n")
+                val r4posText = r4pos.map {it.text() }.joinToString("\n")
+                val r5posText = r5pos.map {it.text() }.joinToString("\n")
+                val r6posText = r6pos.map {it.text() }.joinToString("\n")
+                val r7posText = r7pos.map {it.text() }.joinToString("\n")
+                val r8posText = r8pos.map {it.text() }.joinToString("\n")
+                val r9posText = r9pos.map {it.text() }.joinToString("\n")
+                val r10posText = r10pos.map {it.text() }.joinToString("\n")
+                val r1meanText = r1mean.map {it.text() }.joinToString("\n")
+                val r2meanText = r2mean.map {it.text() }.joinToString("\n")
+                val r3meanText = r3mean.map {it.text() }.joinToString("\n")
+                val r4meanText = r4mean.map {it.text() }.joinToString("\n")
+                val r5meanText = r5mean.map {it.text() }.joinToString("\n")
+                val r6meanText = r6mean.map {it.text() }.joinToString("\n")
+                val r7meanText = r7mean.map {it.text() }.joinToString("\n")
+                val r8meanText = r8mean.map {it.text() }.joinToString("\n")
+                val r9meanText = r9mean.map {it.text() }.joinToString("\n")
+                val r10meanText = r10mean.map {it.text() }.joinToString("\n")
+
+
+
+                withContext(Dispatchers.Main) {
+                    eveword.text = "今日無每日一字"
+
+                    word1.text = r1wordsText + "\n" + r1meanText
+                    word2.text = r2wordsText + "\n" + r2meanText
+                    word3.text = r3wordsText + "\n" + r3meanText
+                    word4.text = r4wordsText + "\n" + r4meanText
+                    word5.text = r5wordsText + "\n" + r5meanText
+                    word6.text = r6wordsText + "\n" + r6meanText
+                    word7.text = r7wordsText + "\n" + r7meanText
+                    word8.text = r8wordsText + "\n" + r8meanText
+                    word9.text = r9wordsText + "\n" + r9meanText
+                    word10.text = r10wordsText + "\n" + r10meanText
+
                 }
-
-                word1.text = r1wordsText + "\n" + r1meanText
-                word2.text = r2wordsText + "\n" + r2meanText
-                word3.text = r3wordsText + "\n" + r3meanText
-                word4.text = r4wordsText + "\n" + r4meanText
-                word5.text = r5wordsText + "\n" + r5meanText
-                word6.text = r6wordsText + "\n" + r6meanText
-                word7.text = r7wordsText + "\n" + r7meanText
-                word8.text = r8wordsText + "\n" + r8meanText
-                word9.text = r9wordsText + "\n" + r9meanText
-                word10.text = r10wordsText + "\n" + r10meanText
-
-                //testtxv.text = wordsText + "  " + meanText //要做推薦單字
-                //testtxv2.text = r5wordsText  //記得改
-                //texttxvchi.text = r6wordsText  //記得改
-
-                /*<TextView
-                        android:id="@+id/testtxv2"
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:text=""
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:id="@+id/texttxvchi"
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:textSize="20dp" />*/
             }
+
         }
     }
 
