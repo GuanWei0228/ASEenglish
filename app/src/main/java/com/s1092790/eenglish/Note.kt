@@ -61,7 +61,7 @@ class Note : AppCompatActivity() {
 
         textView.setTypeface(
             Typeface.createFromAsset(assets,
-                "font/HanyiSentyScholar.ttf"))
+                "font/HanyiSentyWoodCut.ttf"))
 
 
 
