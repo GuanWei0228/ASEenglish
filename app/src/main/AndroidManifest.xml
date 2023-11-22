@@ -43,6 +43,8 @@
         <activity android:name=".sing"/>
         <activity android:name=".Chat"/>
         <activity android:name=".Note"/>
+        <activity android:name=".DeepSearch"/>
+        <activity android:name=".LoveWord"/>
 
 
     </application>

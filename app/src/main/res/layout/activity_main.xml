@@ -249,6 +249,16 @@
 
 
     <ImageView
+        android:id="@+id/notebtn"
+        android:layout_width="102dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.335"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/notebtn" />
+
+    <ImageView
         android:id="@+id/translatebtn"
         android:layout_width="113dp"
         android:layout_height="48dp"
@@ -273,16 +283,16 @@
         app:srcCompat="@drawable/gbtn" />
 
     <ImageView
-        android:id="@+id/musicbtn"
+        android:id="@+id/lwbtn"
         android:layout_width="102dp"
         android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.665"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/mbtn" />
+        app:srcCompat="@drawable/lwbtn" />
 
     <ImageView
         android:id="@+id/chatbtn"
@@ -294,7 +304,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/cbtn" />
+        app:srcCompat="@drawable/gbtn" />
 
     <ImageView
         android:id="@+id/backbtn"
@@ -305,14 +315,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backbtn" />
-
-    <ImageView
-        android:id="@+id/notebtn"
-        android:layout_width="102dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/notebtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

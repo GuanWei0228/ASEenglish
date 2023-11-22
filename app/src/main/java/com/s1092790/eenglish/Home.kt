@@ -17,16 +17,16 @@ import org.jsoup.Jsoup
 import android.view.View.OnClickListener
 import android.view.View.OnLongClickListener
 import android.view.View.OnTouchListener
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
-import kotlinx.android.synthetic.main.logon_main.*
-import java.net.URLDecoder
-import java.net.URLEncoder
+
 
 class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchListener {
     //lateinit var binding: ActivityMainBinding
     private var translate: Translate? = null
     var size:Float = 30f
+    companion object{
+        var qsn:Int = 87
+        var everyword:String =""
+    }
 
     var touchDownTime = System.currentTimeMillis()
     var touchUpTime = System.currentTimeMillis()
@@ -40,6 +40,10 @@ class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchL
         setContentView(R.layout.activity_main)
 
 
+
+        http()
+
+
         eve.setTypeface(
             Typeface.createFromAsset(assets,
                 "font/SentyCreamPuff.ttf"))
@@ -51,61 +55,36 @@ class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchL
         //binding = ActivityMainBinding.inflate(layoutInflater)
         //setContentView(binding.root)
 
-        backbtn.setOnClickListener {
-            val intent = Intent(this, Logon::class.java )
-            startActivity(intent)
-        }
+
 
 
         gamebtn.visibility = View.GONE
         chatbtn.visibility = View.GONE
-        musicbtn.visibility = View.GONE
 
-        gamebtn.setOnTouchListener { v, event ->
-            when (event.action) {
+
+
+        lwbtn.setOnTouchListener { view, motionEvent ->
+            when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    touchDownTime = System.currentTimeMillis()
-                    gamebtn.setImageResource(R.drawable.gbtnclick)
-                    true
+                    // 在按下時更改圖片
+                    lwbtn.setImageResource(R.drawable.lwbtn)
                 }
-                MotionEvent.ACTION_UP -> {
-                    touchUpTime = System.currentTimeMillis()
-                    val touchDuration = touchUpTime - touchDownTime
-                    gamebtn.setImageResource(R.drawable.gbtn)
-                    if(touchDuration <= 1000){
-                        val intent = Intent(this, Game::class.java)
-                        startActivity(intent)
-                    }
-                    true
-
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    // 在釋放或取消時還原圖片
+                    lwbtn.setImageResource(R.drawable.lwbtngray)
                 }
-                else -> false
             }
+            // 返回false表示該事件未被消耗，以便繼續觸發點擊事件
+            false
         }
 
-        musicbtn.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    touchDownTime = System.currentTimeMillis()
-                    musicbtn.setImageResource(R.drawable.mbtnclick)
-                    true
-                }
-                MotionEvent.ACTION_UP -> {
-                    touchUpTime = System.currentTimeMillis()
-                    val touchDuration = touchUpTime - touchDownTime
-                    musicbtn.setImageResource(R.drawable.mbtn)
-                    if(touchDuration <= 1000){
-                        val intent = Intent(this, sing::class.java)
-                        startActivity(intent)
-                    }
-                    true
-
-                }
-                else -> false
-            }
+        lwbtn.setOnClickListener {
+            // 在這裡處理點擊事件
+            val intent = Intent(this, LoveWord::class.java)
+            startActivity(intent)
         }
 
-        chatbtn.setOnTouchListener { v, event ->
+        /*chatbtn.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     touchDownTime = System.currentTimeMillis()
@@ -125,6 +104,27 @@ class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchL
                 }
                 else -> false
             }
+        }*/
+
+        gamebtn.setOnTouchListener { view, motionEvent ->
+            when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    // 在按下時更改圖片
+                    notebtn.setImageResource(R.drawable.gbtn)
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    // 在釋放或取消時還原圖片
+                    notebtn.setImageResource(R.drawable.gbtnclick)
+                }
+            }
+            // 返回false表示該事件未被消耗，以便繼續觸發點擊事件
+            false
+        }
+
+        gamebtn.setOnClickListener {
+            // 在這裡處理點擊事件
+            val intent = Intent(this, Game::class.java)
+            startActivity(intent)
         }
 
         notebtn.setOnTouchListener { view, motionEvent ->
@@ -148,6 +148,8 @@ class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchL
             startActivity(intent)
         }
 
+
+
         translatebtn.setOnTouchListener { view, motionEvent ->
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -169,11 +171,85 @@ class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchL
             translate(view)
         }
 
+        backbtn.setOnClickListener {
+            val intent = Intent(this, Logon::class.java )
+            startActivity(intent)
+        }
+
+        eveword.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 0
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+        }
+
+        word1.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 1
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+        }
+        word2.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 2
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+        }
+        word3.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 3
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+        }
+        word4.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 4
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+        }
+        word5.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 5
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+
+        }
+        word6.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 6
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+        }
+        word7.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 7
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+        }
+        word8.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 8
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+        }
+        word9.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 9
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+        }
+        word10.setOnClickListener {
+            // 在這裡處理點擊事件
+            qsn = 10
+            val intent = Intent(this, DeepSearch::class.java)
+            startActivity(intent)
+        }
+
 
 
         //tv_hello.text = "主頁"
 
-        http()
+
         //testtxv2.text = ""
         //btn_click.setOnClickListener { btn_click.text="您點了一下下"}
 
@@ -204,7 +280,9 @@ class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchL
             val doc = Jsoup.parse(html)
             val words = doc.select("p.fs36 a")//每日一詞
 
+
             val wordsText = words.map {it.text().lowercase() }.joinToString("\n")
+
 
             val request2 = Request.Builder()
                 .url("https://dictionary.cambridge.org/zht/%E8%A9%9E%E5%85%B8/%E8%8B%B1%E8%AA%9E-%E6%BC%A2%E8%AA%9E-%E7%B9%81%E9%AB%94/$wordsText")
@@ -398,7 +476,7 @@ class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchL
 
 
                 withContext(Dispatchers.Main) {
-                    eveword.text = "今日無每日一字"
+                    eveword.text = "Home 家"
 
                     word1.text = r1wordsText + "\n" + r1meanText
                     word2.text = r2wordsText + "\n" + r2meanText
@@ -416,6 +494,7 @@ class Home : AppCompatActivity(), OnClickListener, OnLongClickListener, OnTouchL
 
         }
     }
+
 
 
     fun logg(view: View){

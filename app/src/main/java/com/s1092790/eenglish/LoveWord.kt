@@ -18,11 +18,10 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.deep_search.*
 
 
-class Note : AppCompatActivity() {
-    private lateinit var editText: EditText
-    private lateinit var saveButton: Button
+class LoveWord : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var textView: TextView
     private lateinit var deleteButton: Button
@@ -34,12 +33,10 @@ class Note : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.note_main)
+        setContentView(R.layout.love_word)
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-
 
         val adapter = NoteAdapter()
         recyclerView.adapter = adapter
@@ -54,8 +51,6 @@ class Note : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         currentUser = auth.currentUser
 
-        editText = findViewById(R.id.editText)
-        saveButton = findViewById(R.id.save1)
         textView = findViewById(R.id.textView)
         deleteButton = findViewById(R.id.deleteButton)
 
@@ -73,15 +68,8 @@ class Note : AppCompatActivity() {
             goLogon(view)
         }
 
-        saveButton.setOnClickListener {
-            val text = editText.text.toString()
-            saveTextToDatabase(text)
-        }
 
-
-
-
-        database.child("texts").child(getUserId()).child("notes").addValueEventListener(object : ValueEventListener {
+        database.child("texts").child(getUserId()).child("lovewords").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val stringBuilder = StringBuilder()
                 for (data in snapshot.children) {
@@ -94,14 +82,14 @@ class Note : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("Note", "Failed to read value.", error.toException())
+                Log.e("word", "Failed to read value.", error.toException())
             }
         })
 
 
         deleteButton.setOnClickListener {
             val userId = getUserId()
-            val databaseRef = Firebase.database.reference.child("texts").child(userId).child("notes")
+            val databaseRef = Firebase.database.reference.child("texts").child(userId).child("lovewords")
 
 
             databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -123,11 +111,11 @@ class Note : AppCompatActivity() {
                             itemRef.removeValue()
                                 .addOnSuccessListener {
                                     // 在這裡執行刪除成功的處理，例如更新 UI 或顯示消息
-                                    Toast.makeText(this@Note, "Item deleted", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@LoveWord, "Item deleted", Toast.LENGTH_SHORT).show()
                                 }
                                 .addOnFailureListener {
                                     // 在這裡處理刪除失敗的情況
-                                    Toast.makeText(this@Note, "Error deleting item", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@LoveWord, "Error deleting item", Toast.LENGTH_SHORT).show()
                                 }
                         }
 
@@ -136,27 +124,26 @@ class Note : AppCompatActivity() {
                         val adapter = recyclerView.adapter as NoteAdapter
                         adapter.setItems(emptyList())
                     } else {
-                        Toast.makeText(this@Note, "No items to delete", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoveWord, "No items to delete", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     // 在這裡處理讀取資料失敗的情況
-                    Toast.makeText(this@Note, "Failed to read data", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoveWord, "Failed to read data", Toast.LENGTH_SHORT).show()
                 }
             })
         }
     }
 
-    private fun saveTextToDatabase(text: String) {
+    private fun saveLwordToDatabase(text: String) {
         val userId = getUserId()
-        val key = database.child("texts").child(userId).child("notes").push().key
-        database.child("texts").child(userId).child("notes").child(key!!).setValue(text)
+        val key = database.child("texts").child(userId).child("lovewords").push().key
+        database.child("texts").child(userId).child("lovewords").child(key!!).setValue(text)
             .addOnSuccessListener {
                 // Your existing success listener...
                 NoteAdapter().setItems(listOf(text))
                 Toast.makeText(this, "Text saved", Toast.LENGTH_SHORT).show()
-                editText.setText("")
             }
             .addOnFailureListener {
                 // Your existing failure listener...
